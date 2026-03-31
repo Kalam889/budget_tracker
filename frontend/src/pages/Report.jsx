@@ -3,14 +3,7 @@ import { useState } from "react";
 
 function Report() {
     const [type, setType] = useState("expense");
-
-    const transactions = [
-        { amount: 200, category: "food", type: "expense" },
-        { amount: 500, category: "travel", type: "expense" },
-        { amount: 1000, category: "salary", type: "income" },
-        { amount: 2000, category: "freelance", type: "income" },
-        { amount: 500, category: "food", type: "expense" },
-    ]
+    const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
     const filteredData = transactions.filter((item) => item.type === type);
     const total = filteredData.reduce((acc, item) => acc + item.amount, 0);
     const grouped = {};

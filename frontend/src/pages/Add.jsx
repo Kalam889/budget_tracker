@@ -29,7 +29,7 @@ function Add() {
                 <>
                 <input type="number" value={amount} placeholder="Enter amount" onChange={(e) => setAmount(e.target.value)}/>
                 <h2>Category</h2>
-                <select value={category}>
+                <select value={category} onChange={(e) => setCategory(e.target.value)}>
                     <option value="salary" >Salary</option>
                     <option value="freelance">Freelance</option>
                     <option value="gift">Gift</option>
@@ -42,7 +42,7 @@ function Add() {
                 <>
                 <input type="number" value={amount} placeholder="Enter amount" onChange={(e) => setAmount(e.target.value)}/>
                 <h2>Category</h2>
-                <select value={category}>
+                <select value={category} onChange={(e) => setCategory(e.target.value)}>
                     <option value="food">Food</option>
                     <option value="travel">Travel</option>
                     <option value="bills">Bills</option>
