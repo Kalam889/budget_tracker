@@ -9,6 +9,10 @@ function Add() {
     const [note, setNote] = useState("");
 
     const handleAdd = () => {
+        if (amount === "" || date === "" || category === "") {
+            alert("Please fill required fields");
+            return;
+        }
         const newTransaction = {
             amount: Number(amount),
             category,
@@ -19,7 +23,12 @@ function Add() {
         const oldData = JSON.parse(localStorage.getItem("transactions")) || [];
         const updatedData = [...oldData, newTransaction];
         localStorage.setItem("transactions", JSON.stringify(updatedData));
-}  
+        alert("Transaction added!")
+        setAmount("");
+        setCategory("");
+        setDate("");
+        setNote("");
+    }
     return (
         <div>
             <h1>Add Transaction</h1>
@@ -27,32 +36,32 @@ function Add() {
             <button onClick={() => setType("expense")}>Expense</button>
             {type === "income" ? (
                 <>
-                <input type="number" value={amount} placeholder="Enter amount" onChange={(e) => setAmount(e.target.value)}/>
-                <h2>Category</h2>
-                <select value={category} onChange={(e) => setCategory(e.target.value)}>
-                    <option value="salary" >Salary</option>
-                    <option value="freelance">Freelance</option>
-                    <option value="gift">Gift</option>
-                </select>
-                <input type="date" value={date} placeholder="Enter date" onChange={(e) => setDate(e.target.value)}/>
-                <input type="text" value={note} placeholder="Enter Notes" onChange={(e) => setNote(e.target.value)}/>
-   
+                    <input type="number" value={amount} placeholder="Enter amount" onChange={(e) => setAmount(e.target.value)} />
+                    <h2>Category</h2>
+                    <select value={category} onChange={(e) => setCategory(e.target.value)}>
+                        <option value="salary" >Salary</option>
+                        <option value="freelance">Freelance</option>
+                        <option value="gift">Gift</option>
+                    </select>
+                    <input type="date" value={date} placeholder="Enter date" onChange={(e) => setDate(e.target.value)} />
+                    <input type="text" value={note} placeholder="Enter Notes" onChange={(e) => setNote(e.target.value)} />
+
                 </>
             ) : (
                 <>
-                <input type="number" value={amount} placeholder="Enter amount" onChange={(e) => setAmount(e.target.value)}/>
-                <h2>Category</h2>
-                <select value={category} onChange={(e) => setCategory(e.target.value)}>
-                    <option value="food">Food</option>
-                    <option value="travel">Travel</option>
-                    <option value="bills">Bills</option>
-                </select>
-                <input type="date" value={date} placeholder="Enter date" onChange={(e) => setDate(e.target.value)}/>
-                <input type="text" value={note} placeholder="Enter Notes" onChange={(e) => setNote(e.target.value)}/>
+                    <input type="number" value={amount} placeholder="Enter amount" onChange={(e) => setAmount(e.target.value)} />
+                    <h2>Category</h2>
+                    <select value={category} onChange={(e) => setCategory(e.target.value)}>
+                        <option value="food">Food</option>
+                        <option value="travel">Travel</option>
+                        <option value="bills">Bills</option>
+                    </select>
+                    <input type="date" value={date} placeholder="Enter date" onChange={(e) => setDate(e.target.value)} />
+                    <input type="text" value={note} placeholder="Enter Notes" onChange={(e) => setNote(e.target.value)} />
                 </>
             )}
             <button onClick={handleAdd}>Add Transaction</button>
-             <BottomNav/>
+            <BottomNav />
         </div>
     )
 }
